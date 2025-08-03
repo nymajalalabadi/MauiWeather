@@ -11,7 +11,11 @@
             
             <Frame />
             
-            <SearchBar Placeholder="Search for a city" VerticalOptions="Center" />
+            <SearchBar Placeholder="Search for a city"
+                       VerticalOptions="Center"
+                       x:Name="searchBar"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
 
         </Grid>
 
