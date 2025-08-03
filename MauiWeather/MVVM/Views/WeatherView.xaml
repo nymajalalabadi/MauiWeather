@@ -6,13 +6,20 @@
 
     <Grid Margin="15" RowDefinitions=".08*, .1*, .5*, .1*, .3*">
 
-        <Grid>
+        <Grid Grid.Row="0">
             
             <Frame />
             
             <SearchBar Placeholder="Search for a city" VerticalOptions="Center" />
 
         </Grid>
+
+        <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
+
+            <Label Text="Paris" Style="{StaticResource Title}"/>
+            <Label Text="July 08,2025" Style="{StaticResource WeatherTitle}"/>
+
+        </VerticalStackLayout>
 
     </Grid>
     
