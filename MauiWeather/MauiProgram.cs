@@ -19,9 +19,9 @@ namespace MauiWeather
                     fonts.AddFont("Rubik-Regular.ttf", "Rubik");
                 });
 
-#if DEBUG
+            #if DEBUG
     		builder.Logging.AddDebug();
-#endif
+            #endif
 
             return builder.Build();
         }

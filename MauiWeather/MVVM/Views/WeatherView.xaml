@@ -18,13 +18,66 @@
         <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
 
             <Label Text="Paris" Style="{StaticResource Title}"/>
-            <Label Text="July 08,2025" Style="{StaticResource WeatherTitle}"/>
+            <Label Text="July 08,2025"/>
 
         </VerticalStackLayout>
 
-        <skia:SKLottieView Grid.Row="2" RepeatCount="-1" Source="storm.json">
+        <skia:SKLottieView Grid.Row="2" RepeatCount="-1" Source="storm.json"/>
+
+        <Grid Grid.Row="3" ColumnDefinitions="*, *, *">
             
-        </skia:SKLottieView>
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="10">
+
+                <Label Text="Temp" Style="{StaticResource WeatherTitle}"/>
+                <Label Text="25°C" Style="{StaticResource WeatherValue}"/>
+                
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="10">
+
+                <Label Text="Wind" Style="{StaticResource WeatherTitle}"/>
+                <Label Text="10KM/H" Style="{StaticResource WeatherValue}"/>
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="10">
+
+                <Label Text="Weather" Style="{StaticResource WeatherTitle}"/>
+                <Label Text="Sunny" Style="{StaticResource WeatherValue}"/>
+
+            </VerticalStackLayout>
+
+        </Grid>
+
+        <CollectionView Grid.Row="4">
+            
+            <CollectionView.ItemsSource>
+                
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+            
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Style="{StaticResource card}">
+                        <VerticalStackLayout Spacing="5" VerticalOptions="Center">
+                            <skia:SKLottieView IsAnimationEnabled="False" HeightRequest="50" WidthRequest="50" Source="mist.json"/>
+                            <Label Text="08-02-2025" TextColor="{StaticResource Yellow100Accent}"/>
+                            <Label Text="25°C"/>
+                            <Label Text="Sunny" TextColor="{StaticResource Yellow300Accent}"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
 
     </Grid>
     
