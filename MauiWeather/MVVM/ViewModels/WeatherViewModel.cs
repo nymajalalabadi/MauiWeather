@@ -27,6 +27,10 @@ namespace MauiWeather.MVVM.ViewModels
 
         public DateTime Date { get; set; } = DateTime.Now;
 
+        public bool IsVisible { get; set; }
+
+        public bool IsLoading { get; set; }
+
 
 
         public ICommand SearchCommand => new Command(async (searchText) =>
@@ -40,6 +44,8 @@ namespace MauiWeather.MVVM.ViewModels
         private async Task GetWeather(Location location)
         {
             var url = $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude}&longitude={location.Longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m";
+
+            IsLoading = true;
 
             var response = await _httpClient.GetAsync(url);
 
@@ -61,9 +67,10 @@ namespace MauiWeather.MVVM.ViewModels
                         };
                         WeatherData.daily2.Add(daily2);
                     }
-
+                    IsVisible = true;
                 }
             }
+            IsLoading = false;
         }
 
         private async Task<Location> GetCoordinatesAsync(string address)

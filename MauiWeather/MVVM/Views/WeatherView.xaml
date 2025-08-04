@@ -25,7 +25,7 @@
 
         </Grid>
 
-        <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
+        <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}" IsVisible="{Binding IsVisible}">
 
             <Label Text="{Binding PlaceName}" Style="{StaticResource Title}" />
             <Label Text="{Binding Date, StringFormat='{0: MMMM dd, yyyy}'}"/>
@@ -34,7 +34,7 @@
 
         <skia:SKLottieView Grid.Row="2" RepeatCount="-1" Source="{Binding WeatherData.current_weather.weathercode, Converter={StaticResource CodeToLottieConverter}}" />
 
-        <Grid Grid.Row="3" ColumnDefinitions="*, *, *">
+        <Grid Grid.Row="3" ColumnDefinitions="*, *, *" IsVisible="{Binding IsVisible}">
             
             <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="10">
 
@@ -80,6 +80,10 @@
             </CollectionView.ItemTemplate>
             
         </CollectionView>
+
+        <Grid Grid.RowSpan="5" Margin="-15" BackgroundColor="Black" Opacity=".9" IsVisible ="{Binding IsLoading}">
+            <ActivityIndicator IsRunning="True" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource Yellow100Accent}"/>
+        </Grid>
 
     </Grid>
     
