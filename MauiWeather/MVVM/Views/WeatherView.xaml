@@ -2,8 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiWeather.MVVM.Views.WeatherView"
+             xmlns:converters="clr-namespace:MauiWeather.Converters"
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              Title="WeatherView">
+
+    <ContentPage.Resources>
+        <converters:CodeToWeatherConverter x:Key="CodeToWeatherConverter" />
+        <converters:CodeToLottieConverter x:Key="CodeToLottieConverter" />
+    </ContentPage.Resources>
 
     <Grid Margin="15" RowDefinitions=".08*, .1*, .5*, .1*, .3*">
 
@@ -26,7 +32,7 @@
 
         </VerticalStackLayout>
 
-        <skia:SKLottieView Grid.Row="2" RepeatCount="-1" Source="storm.json"/>
+        <skia:SKLottieView Grid.Row="2" RepeatCount="-1" Source="{Binding WeatherData.current_weather.weathercode, Converter={StaticResource CodeToLottieConverter}}" />
 
         <Grid Grid.Row="3" ColumnDefinitions="*, *, *">
             
