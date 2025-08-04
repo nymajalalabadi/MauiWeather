@@ -21,8 +21,8 @@
 
         <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
 
-            <Label Text="Paris" Style="{StaticResource Title}"/>
-            <Label Text="July 08,2025"/>
+            <Label Text="{Binding PlaceName}" Style="{StaticResource Title}" />
+            <Label Text="{Binding Date, StringFormat='{0: MMMM dd, yyyy}'}"/>
 
         </VerticalStackLayout>
 
@@ -33,21 +33,21 @@
             <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="10">
 
                 <Label Text="Temp" Style="{StaticResource WeatherTitle}"/>
-                <Label Text="25°C" Style="{StaticResource WeatherValue}"/>
-                
+                <Label Text="{Binding WeatherData.current_weather.temperature, StringFormat='{0}°C'}" Style="{StaticResource WeatherValue}"/>
+
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="10">
 
                 <Label Text="Wind" Style="{StaticResource WeatherTitle}"/>
-                <Label Text="10KM/H" Style="{StaticResource WeatherValue}"/>
+                <Label Text="{Binding WeatherData.current_weather.windspeed, StringFormat='{0}Km/h'}" Style="{StaticResource WeatherValue}"/>
 
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="10">
 
                 <Label Text="Weather" Style="{StaticResource WeatherTitle}"/>
-                <Label Text="Sunny" Style="{StaticResource WeatherValue}"/>
+                <Label Text="{Binding WeatherData.current_weather.weathercode, Converter={StaticResource CodeToWeatherConverter}}"/>
 
             </VerticalStackLayout>
 

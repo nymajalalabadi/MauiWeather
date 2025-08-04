@@ -1,4 +1,5 @@
 ﻿using MauiWeather.MVVM.Models;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Windows.Input;
 
 namespace MauiWeather.MVVM.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
     public class WeatherViewModel
     {
         private HttpClient _httpClient;
@@ -21,14 +23,19 @@ namespace MauiWeather.MVVM.ViewModels
 
         public WeatherData WeatherData { get; set; }
 
-        public ICommand SearchCommand => new Command<string>(async (searchBar) =>
+        public string PlaceName { get; set; }
+
+        public DateTime Date { get; set; } = DateTime.Now;
+
+
+
+        public ICommand SearchCommand => new Command(async (searchText) =>
         {
-            if (!string.IsNullOrWhiteSpace(searchBar))
-            {
-                Location location = await GetCoordinatesAsync(searchBar.ToString());
-                await GetWeather(location);
-            }
+             PlaceName = searchText.ToString();
+             var location = await GetCoordinatesAsync(searchText.ToString());
+             await GetWeather(location);
         });
+
 
         private async Task GetWeather(Location location)
         {
@@ -59,6 +66,7 @@ namespace MauiWeather.MVVM.ViewModels
 
             return location;
         }
+
 
     }
 }
